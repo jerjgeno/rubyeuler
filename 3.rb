@@ -5,6 +5,4 @@
 
 require_relative "prime"
 
-puts Prime.primeFactors(13195)
-puts "--"
 puts Prime.primeFactors(600851475143)
