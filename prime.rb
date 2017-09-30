@@ -1,11 +1,15 @@
 module Prime
   
-  LIST = [2,3,5,7,11]
+  LIST = [2,3,5,7,11,13,17]
 
   # returns a boolean whether or not n is prime
   def self.isPrime(n)
     return false if n<2
     return true if n==2
+    for k in LIST
+      return true if n==k
+      return false if n%k==0
+    end
     for k in (3..Math.sqrt(n).round).step(2) #<= chk odd ints until sqrt(n)
       return false if n%k==0
     end
@@ -49,7 +53,6 @@ module Prime
     return [n] if Prime.isPrime(n)
     fac = self.primeFactors(n)
     factorization = [fac.max]
-    finish = false
     factorization.concat(self.primeFactorization(n/fac.max))
     return factorization
   end
@@ -63,5 +66,19 @@ module Prime
     end
     return LIST
   end
+  
+  def self.getPrimesUpTo(n)
+
+    k = LIST.last+2 #<= chk odd ints not in list for primeness
+    while LIST.max<n
+      LIST.push(k) if Prime.isPrime(k)
+      k += 2 #<= next odd int
+    end
+    if LIST.max>n
+      LIST.delete_if {|x| x>n}
+    end
+    return LIST
+
+  end    
 end
 

@@ -4,6 +4,7 @@
 # we get 3, 5, 6 and 9. The sum of these multiples is 23.
 # Find the sum of all the multiples of 3 or 5 below 1000.
 
+start = Time.now()
 sum = 0
 for i in 3..999
   if i%3==0 || i%5==0
@@ -12,3 +13,5 @@ for i in 3..999
   end
 end
 puts sum
+finish = Time.now()
+puts "#{finish - start} seconds elapsed..." 

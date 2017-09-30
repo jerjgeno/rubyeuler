@@ -24,5 +24,6 @@ for i in 100..999
   end
 end
 puts max
-puts "#{Time.now - start} seconds elapsed..."
+finish = Time.now
+puts "#{finish - start} seconds elapsed..."
 

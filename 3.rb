@@ -5,4 +5,7 @@
 
 require_relative "prime"
 
+start = Time.now()
 puts Prime.primeFactors(600851475143)
+finish = Time.now()
+puts "#{finish - start} seconds elapsed..."

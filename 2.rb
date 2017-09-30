@@ -21,6 +21,7 @@ def fib(n)
   return fib(n-2) + fib(n-1)
 end
 
+start = Time.now()
 counter = 0
 sum = 0
 latest = 0
@@ -31,4 +32,6 @@ while
   counter +=1
 end
 puts sum
+finish = Time.now()
+puts "#{finish - start} seconds elapsed..."
   
