@@ -59,6 +59,7 @@ transactions = [];
 for i in 0..arr.length-1
   if i==0
     totals[i] = [arr[i][0]]
+    transactions[i] = [[arr[i][0]]] # transactions[0][0] = [75] ; 3D array
     next
   else
     totals[i] = []
@@ -67,19 +68,24 @@ for i in 0..arr.length-1
   for j in 0..(arr[i].length-1)
     if j==0
       totals[i][j] = arr[i][j] + totals[i-1][j]
-      transactions[i][j] = transactions[i-1][j].push
+      transactions[i][j] = transactions[i-1][j].dup
+      transactions[i][j].push(arr[i][j])
       next
     elsif j==arr[i].length-1
       totals[i][j] = arr[i][j] + totals[i-1][j-1]
-      transactions[i][j].push(transactions[i-1][j-1]) 
+      transactions[i][j] = transactions[i-1][j-1].dup
+      transactions[i][j].push(arr[i][j])
       next
     end
     if (totals[i-1][j-1] >= totals[i-1][j])
-      transactions[i][j].push(transactions[i-1][j-1])
+      totals[i][j] = arr[i][j] + totals[i-1][j-1]
+      transactions[i][j] = transactions[i-1][j-1].dup
+      transactions[i][j].push(arr[i][j])
     else 
-      transactions[i][j].push(transactions[i-1][j])
+      totals[i][j] = arr[i][j] + totals[i-1][j]
+      transactions[i][j] = transactions[i-1][j].dup
+      transactions[i][j].push(arr[i][j])
     end
-    totals[i][j] = arr[i][j] + totals[i-1][j-1,j].max
   end
 end
 
@@ -90,4 +96,6 @@ for i in 0..totals.length-1
   puts ""
 end
 
-puts transactions.inspect
+for i in 0..transactions[14].length-1
+  puts transactions[14][i].inject(:+)
+end
