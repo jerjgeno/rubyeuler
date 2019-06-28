@@ -6,7 +6,7 @@
 # The primes less than the number n, their largest multiple also less than n are
 # the factors
 
-require_relative "prime"
+require_relative "lib/prime"
 
 
 def num(n)
