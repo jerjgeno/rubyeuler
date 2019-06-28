@@ -27,12 +27,7 @@
 
 # NOTE: As there are only 16384 routes, it is possible to solve this problem by trying every route. However, Problem 67, is the same challenge with a triangle containing one-hundred rows; it cannot be solved by brute force, and requires a clever method! ;o)
 
-arr = [
-  [3],
-  [7,4],
-  [2,4,6],
-  [8,5,9,3]
-]
+start = Time.now()
 
 arr = [
   [75],
@@ -89,13 +84,6 @@ for i in 0..arr.length-1
   end
 end
 
-for i in 0..totals.length-1
-  for j in 0..totals[i].length-1
-    print "%04d " % totals[i][j]
-  end
-  puts ""
-end
-
-for i in 0..transactions[14].length-1
-  puts transactions[14][i].inject(:+)
-end
+puts totals[totals.length-1].max
+finish = Time.now()
+puts "#{finish - start} seconds elapsed..." 
