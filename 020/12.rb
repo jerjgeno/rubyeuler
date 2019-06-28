@@ -19,8 +19,8 @@ We can see that 28 is the first triangle number to have over five divisors.
 What is the value of the first triangle number to have over five hundred divisors?
 =end
 
-require_relative "lib/prime"
-require_relative "lib/jerj"
+require_relative "../lib/prime"
+require_relative "../lib/jerj"
 
 start = Time.now()
 n = 500 
