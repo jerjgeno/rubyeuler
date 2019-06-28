@@ -105,10 +105,10 @@ text = "
   53503534226472524250874054075591789781264330331690
 "
 
-arr = text.split(/\n+/)
+arr = text.split(/\n+/) #split string into lines
 sum = 0
 arr.each_with_index {|val,i| 
-  arr[i]=val.strip[0..10] #first 11 chars will be enough
+  arr[i]=val.strip[0..10] #grab first 11 chars, that will be enough
   sum += arr[i].to_i
 }
 puts sum.to_s[0..9]

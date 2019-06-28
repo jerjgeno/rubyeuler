@@ -49,41 +49,31 @@ arr = [
 
 totals = Array.new(arr.length);
 
-transactions = [];
+# every value has at most 2 parents that connect to it. traverse by rows
+#   summing the total at each value by choosing the max parent
 
 for i in 0..arr.length-1
   if i==0
-    totals[i] = [arr[i][0]]
-    transactions[i] = [[arr[i][0]]] # transactions[0][0] = [75] ; 3D array
+    totals[i] = [arr[i][0]] #initialize first row, sum equals first value
     next
   else
-    totals[i] = []
-    transactions[i] = []
+    totals[i] = [] #initialize row as array
   end
   for j in 0..(arr[i].length-1)
-    if j==0
+    if j==0 #first value only has one parent
       totals[i][j] = arr[i][j] + totals[i-1][j]
-      transactions[i][j] = transactions[i-1][j].dup
-      transactions[i][j].push(arr[i][j])
       next
-    elsif j==arr[i].length-1
+    elsif j==arr[i].length-1 #last value only has one parent
       totals[i][j] = arr[i][j] + totals[i-1][j-1]
-      transactions[i][j] = transactions[i-1][j-1].dup
-      transactions[i][j].push(arr[i][j])
       next
-    end
-    if (totals[i-1][j-1] >= totals[i-1][j])
+    elsif (totals[i-1][j-1] >= totals[i-1][j]) #for remaining choose max parent
       totals[i][j] = arr[i][j] + totals[i-1][j-1]
-      transactions[i][j] = transactions[i-1][j-1].dup
-      transactions[i][j].push(arr[i][j])
     else 
       totals[i][j] = arr[i][j] + totals[i-1][j]
-      transactions[i][j] = transactions[i-1][j].dup
-      transactions[i][j].push(arr[i][j])
     end
   end
 end
 
-puts totals[totals.length-1].max
+puts totals[totals.length-1].max #final row has all totals, print the max
 finish = Time.now()
 puts "#{finish - start} seconds elapsed..." 
